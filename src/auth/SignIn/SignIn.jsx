@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const SignIn = () => {
   return (
@@ -61,12 +62,12 @@ const SignIn = () => {
                                 </p>
                                 <form className="mt-4">
                                     <div className="form-group">
-                                        <label className="form-label" for="exampleInputEmail1">Email address</label>
+                                        <label className="form-label" htmlFor="exampleInputEmail1">Email address</label>
                                         <input type="email" className="form-control mb-0" id="exampleInputEmail1"
                                             placeholder="Enter email" />
                                     </div>
                                     <div className="form-group">
-                                        <label className="form-label" for="exampleInputPassword1">Password</label>
+                                        <label className="form-label" htmlFor="exampleInputPassword1">Password</label>
                                         <a href="sign-in.html#" className="float-end">Forgot password?</a>
                                         <input type="password" className="form-control mb-0" id="exampleInputPassword1"
                                             placeholder="Password" />
@@ -74,7 +75,7 @@ const SignIn = () => {
                                     <div className="d-inline-block w-100">
                                         <div className="form-check d-inline-block mt-2 pt-1">
                                             <input type="checkbox" className="form-check-input" id="customCheck11" />
-                                            <label className="form-check-label" for="customCheck11">Remember Me</label>
+                                            <label className="form-check-label" htmlFor="customCheck11">Remember Me</label>
                                         </div>
                                         <button type="submit" className="btn btn-primary float-end">
                                             Sign in
@@ -82,7 +83,7 @@ const SignIn = () => {
                                     </div>
                                     <div className="sign-info">
                                         <span className="dark-color d-inline-block line-height-2">Don't have an account?
-                                            <a href="sign-up.html">Sign up</a></span>
+                                            <Link to='/'>Sign up</Link></span>
                                         <ul className="iq-social-media">
                                             <li>
                                                 <a href="sign-in.html#"><i className="ri-facebook-box-line"></i></a>
