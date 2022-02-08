@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 const SignIn = () => {
   return (
     <div>
-        <div id="loading">
+        {/* <div id="loading">
             <div id="loading-center"></div>
-        </div>
+        </div> */}
 
         <div className="wrapper">
             <section className="sign-in-page">
@@ -22,12 +22,12 @@ const SignIn = () => {
                     <div className="row no-gutters">
                         <div className="col-md-6 text-center pt-5">
                             <div className="sign-in-detail text-white">
-                                <a className="sign-in-logo mb-5" href="sign-in.html#"><img
-                                        src="./assets/images/logo-full.png" className="img-fluid" alt="logo" /></a>
+                                <Link className="sign-in-logo mb-5" to="/sign-in/"><img
+                                        src="../assets/images/logo-full.png" className="img-fluid" alt="logo" /></Link>
                                 <div className="sign-slider overflow-hidden">
                                     <ul className="swiper-wrapper list-inline m-0 p-0">
                                         <li className="swiper-slide">
-                                            <img src="./assets/images/login/1.png" className="img-fluid mb-4" alt="logo" />
+                                            <img src="../assets/images/login/1.png" className="img-fluid mb-4" alt="logo" />
                                             <h4 className="mb-1 text-white">Find new friends</h4>
                                             <p>
                                                 It is a long established fact that a reader will be
@@ -35,7 +35,7 @@ const SignIn = () => {
                                             </p>
                                         </li>
                                         <li className="swiper-slide">
-                                            <img src="./assets/images/login/2.png" className="img-fluid mb-4" alt="logo" />
+                                            <img src="../assets/images/login/2.png" className="img-fluid mb-4" alt="logo" />
                                             <h4 className="mb-1 text-white">Connect with the world</h4>
                                             <p>
                                                 It is a long established fact that a reader will be
@@ -43,7 +43,7 @@ const SignIn = () => {
                                             </p>
                                         </li>
                                         <li className="swiper-slide">
-                                            <img src="./assets/images/login/3.png" className="img-fluid mb-4" alt="logo" />
+                                            <img src="../assets/images/login/3.png" className="img-fluid mb-4" alt="logo" />
                                             <h4 className="mb-1 text-white">Create new events</h4>
                                             <p>
                                                 It is a long established fact that a reader will be
@@ -62,20 +62,20 @@ const SignIn = () => {
                                 </p>
                                 <form className="mt-4">
                                     <div className="form-group">
-                                        <label className="form-label" htmlFor="exampleInputEmail1">Email address</label>
-                                        <input type="email" className="form-control mb-0" id="exampleInputEmail1"
+                                        <label className="form-label" htmlFor="exampleInputEmail2">Email address</label>
+                                        <input type="email" className="form-control mb-0" id="exampleInputEmail2"
                                             placeholder="Enter email" />
                                     </div>
                                     <div className="form-group">
-                                        <label className="form-label" htmlFor="exampleInputPassword1">Password</label>
-                                        <a href="sign-in.html#" className="float-end">Forgot password?</a>
-                                        <input type="password" className="form-control mb-0" id="exampleInputPassword1"
+                                        <label className="form-label" htmlFor="exampleInputPassword2">Password</label>
+                                        <Link to="/recover/" className="float-end">Forgot password?</Link>
+                                        <input type="password" className="form-control mb-0" id="exampleInputPassword2"
                                             placeholder="Password" />
                                     </div>
                                     <div className="d-inline-block w-100">
                                         <div className="form-check d-inline-block mt-2 pt-1">
-                                            <input type="checkbox" className="form-check-input" id="customCheck11" />
-                                            <label className="form-check-label" htmlFor="customCheck11">Remember Me</label>
+                                            <input type="checkbox" className="form-check-input" id="customCheck12" />
+                                            <label className="form-check-label" htmlFor="customCheck12">Remember Me</label>
                                         </div>
                                         <button type="submit" className="btn btn-primary float-end">
                                             Sign in

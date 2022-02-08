@@ -1,12 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axiosInstance  from '../../axios';
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 const SignUp = () => {
+  const navigate = useNavigate;
+  const initialFormData = Object.freeze({
+    email: "",
+    username: "",
+    password: ''
+  })
+
+  const [formData, updateFormData] = useState(initialFormData)
+
+  const handleChange = (e) =>{
+    updateFormData({
+      ...formData,
+      [e.target.name]: e.target.value.trim()
+    })
+  }
+  const handleSubmit = (e) =>{
+    e.preventDefault()
+    console.log(formData)
+
+    axiosInstance
+      .post(`user/create/`, {
+        email: formData.email,
+        user_name:formData.username,
+        password:formData.password
+      })
+      .then((res)=>{
+        navigate("/sign-in/", { replace: true })
+      })
+  }
   return (
     <div>
-        <div id="loading">
+        {/* <div id="loading">
             <div id="loading-center"></div>
-        </div>
+        </div> */}
     
         <div className="wrapper">
             <section className="sign-in-page">
@@ -21,8 +52,8 @@ const SignUp = () => {
                     <div className="row no-gutters">
                         <div className="col-md-6 text-center pt-5">
                             <div className="sign-in-detail text-white">
-                                <a className="sign-in-logo mb-5" href="sign-up.html#"><img src="./assets/images/logo-full.png"
-                                        className="img-fluid" alt="logo" /></a>
+                                <Link className="sign-in-logo mb-5" to='/'><img src="./assets/images/logo-full.png"
+                                        className="img-fluid" alt="logo" /></Link>
                                 <div className="sign-slider overflow-hidden">
                                     <ul className="swiper-wrapper list-inline m-0 p-0">
                                         <li className="swiper-slide">
@@ -61,27 +92,27 @@ const SignUp = () => {
                                 </p>
                                 <form className="mt-4">
                                     <div className="form-group">
-                                        <label className="form-label" htmlFor="exampleInputEmail1">Your Full Name</label>
-                                        <input type="email" className="form-control mb-0" id="exampleInputEmail1"
+                                        <label className="form-label" htmlFor="exampleInputEmail4">Your Full Name</label>
+                                        <input onChange={handleChange} type="email" className="form-control mb-0" id="exampleInputEmail4"
                                             placeholder="Your Full Name" />
                                     </div>
                                     <div className="form-group">
-                                        <label className="form-label" htmlFor="exampleInputEmail2">Email address</label>
-                                        <input type="email" className="form-control mb-0" id="exampleInputEmail2"
+                                        <label className="form-label" htmlFor="exampleInputEmail3">Email address</label>
+                                        <input onChange={handleChange} type="email" className="form-control mb-0" id="exampleInputEmail3"
                                             placeholder="Enter email" />
                                     </div>
                                     <div className="form-group">
-                                        <label className="form-label" htmlFor="exampleInputPassword1">Password</label>
-                                        <input type="password" className="form-control mb-0" id="exampleInputPassword1"
+                                        <label className="form-label" htmlFor="exampleInputPassword5">Password</label>
+                                        <input type="password" onChange={handleChange} className="form-control mb-0" id="exampleInputPassword5"
                                             placeholder="Password" />
                                     </div>
                                     <div className="d-inline-block w-100">
                                         <div className="form-check d-inline-block mt-2 pt-1">
-                                            <input type="checkbox" className="form-check-input" id="customCheck1" />
-                                            <label className="form-check-label" htmlFor="customCheck1">I accept
-                                                <a href="sign-up.html#">Terms and Conditions</a></label>
+                                            <input type="checkbox" className="form-check-input" id="customCheck2" />
+                                            <label className="form-check-label" htmlFor="customCheck2">I accept
+                                                <Link to="/">Terms and Conditions</Link></label>
                                         </div>
-                                        <button type="submit" className="btn btn-primary float-end">
+                                        <button onClick={handleSubmit} type="submit" className="btn btn-primary float-end">
                                             Sign Up
                                         </button>
                                     </div>

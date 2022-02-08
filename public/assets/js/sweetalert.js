@@ -1,6 +1,3 @@
-/* eslint-disable strict */
-/* eslint-disable no-undef */
-/* eslint-disable no-throw-literal */
 (function ($) {
     "use strict";
 

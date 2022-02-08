@@ -7,10 +7,10 @@ import SignUp from "./auth/SignUp/SignUp";
 function App() {
   return (
     <div className="App">
-      <SignIn/>
       <Routes>
           <Route path="/" element={<SignUp/>}/>
           <Route path="/sign-in/" element={<SignIn/>}/>
+          <Route path="/recover/" element={<SignIn/>}/>
         </Routes>
     </div>
   );
