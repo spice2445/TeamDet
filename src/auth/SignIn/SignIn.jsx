@@ -1,8 +1,39 @@
 
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import axiosInstance from '../../axios';
 
 const SignIn = () => {
+    const navigate = useNavigate();
+    const initialFormData = Object.freeze({
+      email: "",
+      password: ''
+    })
+  
+    const [formData, updateFormData] = useState(initialFormData)
+  
+    const handleChange = (e) =>{
+      updateFormData({
+        ...formData,
+        [e.target.name]: e.target.value.trim()
+      })
+    }
+    const handleSubmit = (e) =>{
+      e.preventDefault()
+      console.log(formData)
+  
+      axiosInstance
+        .post(`user/create/`, {
+          email: formData.email,
+          password:formData.password
+        })
+        .then((res)=>{
+          localStorage.setItem('access_token', res.data.access)
+          localStorage.setItem('refresh_token', res.data.refresh)
+          axiosInstance.defaults.headers['Authorization'] = 'JWT ' + localStorage.getItem("access_token")
+          navigate("/", { replace: true })
+        })
+    }
   return (
     <div>
         {/* <div id="loading">
@@ -63,13 +94,13 @@ const SignIn = () => {
                                 <form className="mt-4">
                                     <div className="form-group">
                                         <label className="form-label" htmlFor="exampleInputEmail2">Email address</label>
-                                        <input type="email" className="form-control mb-0" id="exampleInputEmail2"
+                                        <input onChange={handleChange} type="email" className="form-control mb-0" id="exampleInputEmail2"
                                             placeholder="Enter email" />
                                     </div>
                                     <div className="form-group">
                                         <label className="form-label" htmlFor="exampleInputPassword2">Password</label>
                                         <Link to="/recover/" className="float-end">Forgot password?</Link>
-                                        <input type="password" className="form-control mb-0" id="exampleInputPassword2"
+                                        <input onChange={handleChange} type="password" className="form-control mb-0" id="exampleInputPassword2"
                                             placeholder="Password" />
                                     </div>
                                     <div className="d-inline-block w-100">
@@ -77,7 +108,7 @@ const SignIn = () => {
                                             <input type="checkbox" className="form-check-input" id="customCheck12" />
                                             <label className="form-check-label" htmlFor="customCheck12">Remember Me</label>
                                         </div>
-                                        <button type="submit" className="btn btn-primary float-end">
+                                        <button onClick={handleSubmit} type="submit" className="btn btn-primary float-end">
                                             Sign in
                                         </button>
                                     </div>
